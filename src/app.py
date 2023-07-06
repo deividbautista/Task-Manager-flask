@@ -26,11 +26,12 @@ def home():
 def addUser():
     Titulo = request.form['Titulo']
     Descripcion = request.form['Descripcion']
+    Fecha = request.form['fecha']
 
     if Titulo and Descripcion:
         cursor = db.database.cursor()
-        sql = "INSERT INTO procesos (Titulo, Descripcion) VALUES (%s, %s)"
-        data = (Titulo, Descripcion)
+        sql = "INSERT INTO procesos (Titulo, Descripcion, Fecha_terminación) VALUES (%s, %s, %s)"
+        data = (Titulo, Descripcion, Fecha)
         cursor.execute(sql, data)
         db.database.commit()
     return redirect(url_for('home'))

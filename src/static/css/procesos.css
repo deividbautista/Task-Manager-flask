@@ -117,3 +117,14 @@ li p {
 .empty {
     color: darkslategrey;
 }
+table {
+    table-layout: fixed !important;
+}  
+tr{
+    background: #a49afc !important;
+}
+td {
+    background: #f7f7f7 !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+}

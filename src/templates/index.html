@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/procesos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="container-tareas">
+                    <h1>Lista de Procesos</h1>
+                    <div class="search-tareas">
+                        <form class="Formulario-tareas">
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-2" class="boton-tareas" > Agregar proceso...</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Tabla -->
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Número del proceso</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Vista</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for datos in data %}
+                        <tr>
+                            <td>{{datos.id_proceso}}</td>
+                            <td>{{datos.Titulo}}</td>
+                            <td>{{datos.Descripcion}}</td>
+                            <td><button type="button" data-bs-toggle="modal" data-bs-target="#modal-3{{datos.id_proceso}}" class="btn btn-primary btn-sm" >Ver más...</button></td>
+                            <td></td>
+                            
+                        </tr>
+
+                        <!-- modal -->
+                        <div class="modal fade" id="modal{{datos.id_proceso}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{datos.username}}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/edit/{{datos.id_proceso}}" method="post">
+                                            <label>Titulo</label>
+                                            <input type="text" class="form-control mb-3" name="Titulo"
+                                                value="{{datos.Titulo}}">
+                                            <label>Password</label>
+                                            <input type="text" class="form-control mb-3" name="Descripcion"
+                                                value="{{datos.Descripcion}}">
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin modal -->
+
+                        <!-- Modal-2 -->
+                        <div class="modal fade" id="exampleModal-2" tabindex="-1" aria-labelledby="exampleModalLabel-2" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo proceso</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                <!-- Cuerpo del modal donde encontramos el formualrio con los datos del usario -->
+                                    <div class="modal-body">
+                                        <form action="/proceso" method="POST">
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label>Titulo</label>
+                                                    <input type="text" class="form-control mb-3" name="Titulo">
+                                                </div>
+                                                <div class="col">
+                                                    <label>Descripcion</label>
+                                                    <input type="text" class="form-control mb-3" name="Descripcion">
+                                                </div>
+                                                <div class="col">
+                                                    <button class="btn btn-primary mb-3 mt-4" type="submit">Save</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin modal-2 -->
+
+                        <!-- Modal-3 -->
+                        <div class="modal fade" id="modal-3{{datos.id_proceso}}" tabindex="-1" aria-labelledby="exampleModalLabel-3" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{datos.Titulo}}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                <!-- Cuerpo del modal donde encontramos el formualrio con los datos del usario -->
+                                    <div class="modal-body">
+                                        <p class="text-break">
+                                            {{datos.Descripcion}}
+                                        </p>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary btn-sm" id="btn-edit{{datos.id_proceso}}" data-bs-toggle="modal"
+                                                data-bs-target="#modal{{datos.id_proceso}}">Editar proceso</button>
+                                        <a href="{{url_for('delete', idP=datos.id_proceso)}}" class="btn btn-danger btn-sm">Borrar proceso</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin modal-3 -->
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+crossorigin="anonymous"></script>
+
+</html>

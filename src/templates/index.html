@@ -29,11 +29,11 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col"><i class="fa-solid fa-hashtag"></i> Número proceso</th>
+                            <th scope="col" class="col-2"><i class="fa-solid fa-hashtag"></i> Número proceso</th>
                             <th scope="col"><i class="fa-solid fa-heading"></i> Titulo</th>
-                            <th scope="col"><i class="fa-solid fa-book"></i> Descripcion</th>
-                            <th scope="col"><i class="fa-regular fa-calendar-days"></i> Fecha limite</th>
-                            <th scope="col"><i class="fa-regular fa-eye"></i> Vista</th>
+                            <th scope="col" class="col-3"><i class="fa-solid fa-book"></i> Descripcion</th>
+                            <th scope="col"><i class="fa-regular fa-calendar-days"></i> Periodo de tiempo</th>
+                            <th scope="col" class="col-1"><i class="fa-regular fa-eye"></i> Vista</th>
                             <th scope="col"><i class="fa-regular fa-user"></i> Asignado</th>
                         </tr>
                     </thead>
@@ -44,7 +44,7 @@
                             <td>{{datos.id_proceso}}</td>
                             <td>{{datos.Titulo}}</td>
                             <td class="descripcion" >{{datos.Descripcion}}</td>
-                            <td>{{datos.Fecha_terminación}}</td>
+                            <td>{{datos.Fecha_creacion}}/{{datos.Fecha_terminación}}</td>
                             <td><button type="button" data-bs-toggle="modal" data-bs-target="#modal-3{{datos.id_proceso}}" class="btn btn-primary btn-sm" >Ver más...</button></td>  
                         </tr>
 
@@ -63,14 +63,14 @@
                                             <label>Titulo</label>
                                             <input type="text" class="form-control mb-3" name="Titulo"
                                                 value="{{datos.Titulo}}">
-                                            <label>Password</label>
+                                            <label>Descripcion</label>
                                             <input type="text" class="form-control mb-3" name="Descripcion"
                                                 value="{{datos.Descripcion}}">
 
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar</button>
                                             </div>
                                         </form>
                                     </div>
@@ -93,21 +93,23 @@
                                     <div class="modal-body">
                                         <form action="/proceso" method="POST">
                                             <div class="row mb-3">
-                                                <div class="col">
-                                                    <label>Titulo</label>
-                                                    <input type="text" class="form-control mb-3" name="Titulo">
+                                                <label>Titulo</label>
+                                                <input type="text" class="form-control mb-3" name="Titulo">
+                        
+                                                <label>Descripcion</label>
+                                                <input type="text" class="form-control mb-3" name="Descripcion">   
+                                                
+                                                <label for="fecha">Fecha Limite:</label>
+                                                <input type="date" class="form-control mb-3" id="fecha" name="fecha">
+
+                                                <label for="formFileSm" class="form-label"></label>
+                                                <input class="form-control form-control-sm" id="formFileSm" type="file" name="archivo">
+
+                                                <div class="mb-3">
+                                                    
                                                 </div>
-                                                <div class="col">
-                                                    <label>Descripcion</label>
-                                                    <input type="text" class="form-control mb-3" name="Descripcion">
-                                                </div>
-                                                <div class="col">
-                                                    <label for="fecha">Fecha Limite:</label>
-                                                    <input type="date" class="form-control mb-3" id="fecha" name="fecha">
-                                                </div>     
-                                                <div class="col">
-                                                    <button class="btn btn-primary mb-3 mt-4" type="submit">Save</button>
-                                                </div>
+
+                                                <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar</button>       
                                             </div>
                                         </form>
                                     </div>

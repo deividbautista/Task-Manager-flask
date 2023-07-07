@@ -118,9 +118,12 @@ li p {
     color: darkslategrey;
 }
 table {
+    border-radius: 50px !important;
+    border-collapse: collapse !important;
+    border: solid 1px #0c011bab !important;
     table-layout: fixed !important;
 }  
-tr{
+tr {
     background: #a49afc !important;
 }
 td {
@@ -128,3 +131,10 @@ td {
     overflow: hidden !important;
     white-space: nowrap !important;
 }
+
+
+
+/* 
+-webkit-box-shadow: 0 3px #ccc !important; 
+-moz-box-shadow: 0 3px #ccc !important; 
+box-shadow: 0 3px #ccc !important;  */

@@ -22,3 +22,7 @@ env/Scripts/activate
 # Instalar las dependencias que necesitaremos en este proyecto
 pip install -r dependencies.txt 
 ```
+```sh
+# Para correr el proyecto
+python src/app.py 
+```

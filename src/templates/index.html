@@ -32,7 +32,7 @@
                             <th scope="col" class="col-2"><i class="fa-solid fa-hashtag"></i> Número proceso</th>
                             <th scope="col"><i class="fa-solid fa-heading"></i> Titulo</th>
                             <th scope="col" class="col-3"><i class="fa-solid fa-book"></i> Descripcion</th>
-                            <th scope="col"><i class="fa-regular fa-calendar-days"></i> Periodo de tiempo</th>
+                            <th scope="col" class="col-3"><i class="fa-regular fa-calendar-days"></i> Periodo de tiempo</th>
                             <th scope="col" class="col-1"><i class="fa-regular fa-eye"></i> Vista</th>
                             <th scope="col"><i class="fa-regular fa-user"></i> Asignado</th>
                         </tr>
@@ -44,7 +44,7 @@
                             <td>{{datos.id_proceso}}</td>
                             <td>{{datos.Titulo}}</td>
                             <td class="descripcion" >{{datos.Descripcion}}</td>
-                            <td>{{datos.Fecha_creacion}}/{{datos.Fecha_terminación}}</td>
+                            <td>{{datos.Fecha_creacion}} // {{datos.Fecha_terminación}}</td>
                             <td><button type="button" data-bs-toggle="modal" data-bs-target="#modal-3{{datos.id_proceso}}" class="btn btn-primary btn-sm" >Ver más...</button></td>  
                         </tr>
 

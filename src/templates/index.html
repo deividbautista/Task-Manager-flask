@@ -63,9 +63,12 @@
                                             <label>Titulo</label>
                                             <input type="text" class="form-control mb-3" name="Titulo"
                                                 value="{{datos.Titulo}}">
-                                            <label>Descripcion</label>
+                                            <label>Descripción</label>
                                             <input type="text" class="form-control mb-3" name="Descripcion"
                                                 value="{{datos.Descripcion}}">
+
+                                            <label for="formFileSm" class="form-label"></label>
+                                            <input class="form-control form-control-sm" id="formFileSm" type="file" name="archivo">
 
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
@@ -83,7 +86,6 @@
                         <div class="modal fade" id="exampleModal-2" tabindex="-1" aria-labelledby="exampleModalLabel-2" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo proceso</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -96,7 +98,7 @@
                                                 <label>Titulo</label>
                                                 <input type="text" class="form-control mb-3" name="Titulo">
                         
-                                                <label>Descripcion</label>
+                                                <label>Descripción</label>
                                                 <input type="text" class="form-control mb-3" name="Descripcion">   
                                                 
                                                 <label for="fecha">Fecha Limite:</label>
@@ -104,10 +106,6 @@
 
                                                 <label for="formFileSm" class="form-label"></label>
                                                 <input class="form-control form-control-sm" id="formFileSm" type="file" name="archivo">
-
-                                                <div class="mb-3">
-                                                    
-                                                </div>
 
                                                 <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar</button>       
                                             </div>

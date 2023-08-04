@@ -11,7 +11,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
 ```
 ```sh
 # Crear entorno virtual
-virtualenv -p python3 env   
+virtualenv env   
 ```
 ```sh
 # Activar entorno virtual para instalar dependencias

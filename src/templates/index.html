@@ -17,6 +17,7 @@
             <div class="card-body">
                 <div class="container-tareas">
                     <h1>Lista de Procesos</h1>
+                    <h2></h2>
                     <div class="search-tareas">
                         <form class="Formulario-tareas">
                             <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-2" class="boton-tareas" > Agregar proceso...</button>
@@ -30,9 +31,9 @@
                     <thead>
                         <tr>
                             <th scope="col" class="col-2"><i class="fa-solid fa-hashtag"></i> Número proceso</th>
-                            <th scope="col"><i class="fa-solid fa-heading"></i> Titulo</th>
-                            <th scope="col" class="col-3"><i class="fa-solid fa-book"></i> Descripcion</th>
-                            <th scope="col" class="col-3"><i class="fa-regular fa-calendar-days"></i> Periodo de tiempo</th>
+                            <th scope="col" class="col-2"><i class="fa-solid fa-heading"></i> Titulo</th>
+                            <th scope="col" class="col-4"><i class="fa-solid fa-book"></i> Descripcion</th>
+                            <th scope="col"><i class="fa-regular fa-calendar-days"></i> Duración</th>
                             <th scope="col" class="col-1"><i class="fa-regular fa-eye"></i> Vista</th>
                             <th scope="col"><i class="fa-regular fa-user"></i> Asignado</th>
                         </tr>
@@ -44,17 +45,17 @@
                             <td>{{datos.id_proceso}}</td>
                             <td>{{datos.Titulo}}</td>
                             <td class="descripcion" >{{datos.Descripcion}}</td>
-                            <td>{{datos.Fecha_creacion}} // {{datos.Fecha_terminación}}</td>
+                            <td>{{datos.Fecha_creacion}} <br> {{datos.Fecha_terminación}}</td>
                             <td><button type="button" data-bs-toggle="modal" data-bs-target="#modal-3{{datos.id_proceso}}" class="btn btn-primary btn-sm" >Ver más...</button></td>  
                         </tr>
 
-                        <!-- modal -->
+                        <!-- Modal para editar proceso-->
                         <div class="modal fade" id="modal{{datos.id_proceso}}" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{datos.username}}</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar proceso.</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -64,12 +65,10 @@
                                             <input type="text" class="form-control mb-3" name="Titulo"
                                                 value="{{datos.Titulo}}">
                                             <label>Descripción</label>
-                                            <input type="text" class="form-control mb-3" name="Descripcion"
-                                                value="{{datos.Descripcion}}">
-
-                                            <label for="formFileSm" class="form-label"></label>
-                                            <input class="form-control form-control-sm" id="formFileSm" type="file" name="archivo">
-
+                                            <input type="text" class="form-control mb-3" name="Descripcion" value="{{datos.Descripcion}}">
+                                            <hr>
+                                            <button class="btnAsignar" type="submit" data-toggle="dropdown"> <i class="fa-solid fa-user"></i> Editar personal...</button>
+                                            <hr>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Cerrar</button>
@@ -82,7 +81,7 @@
                         </div>
                         <!-- Fin modal -->
 
-                        <!-- Modal-2 -->
+                        <!-- Modal 2 Para crear proceso -->
                         <div class="modal fade" id="exampleModal-2" tabindex="-1" aria-labelledby="exampleModalLabel-2" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -103,11 +102,18 @@
                                                 
                                                 <label for="fecha">Fecha Limite:</label>
                                                 <input type="date" class="form-control mb-3" id="fecha" name="fecha">
+                                                <hr>
+                                                <button class="btnAsignar" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i> Asignar personal...</button>
+                                                <br><br>
+                                                <hr>
+                                                <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar</button>  
 
-                                                <label for="formFileSm" class="form-label"></label>
-                                                <input class="form-control form-control-sm" id="formFileSm" type="file" name="archivo">
-
-                                                <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar</button>       
+                                                <ul class="dropdown-menu">
+                                                    {% for Usuario in datosU %}
+                                                    <li><a class="dropdown-item" href="#">{{Usuario.fullname}}</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                                
                                             </div>
                                         </form>
                                     </div>
@@ -116,24 +122,31 @@
                         </div>
                         <!-- Fin modal-2 -->
 
-                        <!-- Modal-3 -->
+                        <!-- Modal 3 De vista de los datos del proceso -->
                         <div class="modal fade" id="modal-3{{datos.id_proceso}}" tabindex="-1" aria-labelledby="exampleModalLabel-3" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
 
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">{{datos.Titulo}}</h1>
+                                        <button type="button" class="icono btn" data-bs-dismiss="modal"
+                                        aria-label="Close"><i class="fa-solid fa-ellipsis"></i></button>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                <!-- Cuerpo del modal donde encontramos el formualrio con los datos del usario -->
+                                    <!-- Cuerpo del modal donde encontramos el formualrio con los datos del usario -->
                                     <div class="modal-body">
                                         <p class="text-break">
                                             {{datos.Descripcion}}
                                         </p>
+                                        <hr>
+                                        <p class="text-break">
+                                            {{datos.Fecha_creacion}} // {{datos.Fecha_terminación}}
+                                        </p>
                                     </div>
-
                                     <div class="modal-footer">
+                                        <button class="btnReport btn btn-primary btn-sm" id="btn-edit{{datos.id_proceso}}" data-bs-toggle="modal"
+                                                data-bs-target="#modal{{datos.id_proceso}}" >Reporte...</button>
                                         <button class="btn btn-primary btn-sm" id="btn-edit{{datos.id_proceso}}" data-bs-toggle="modal"
                                                 data-bs-target="#modal{{datos.id_proceso}}">Editar proceso</button>
                                         <a href="{{url_for('delete', idP=datos.id_proceso)}}" class="btn btn-danger btn-sm">Borrar proceso</a>
@@ -143,7 +156,6 @@
                             </div>
                         </div>
                         <!-- Fin modal-3 -->
-
                         {% endfor %}
                     </tbody>
                 </table>

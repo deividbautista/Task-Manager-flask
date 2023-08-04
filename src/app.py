@@ -7,6 +7,24 @@ template_dir = os.path.join(template_dir, 'src', 'templates')
 
 app = Flask(__name__, template_folder = template_dir)
 
+
+
+def datosUsuarios():
+    cursor = db.database.cursor()
+    cursor.execute("SELECT * FROM users")
+    myresult = cursor.fetchall()
+    #Convertir los datos a diccionario
+    insertObject = []
+    columnNames = [column[0] for column in cursor.description]
+    for record in myresult:
+        insertObject.append(dict(zip(columnNames, record)))
+    cursor.close()  
+
+    dataUser=insertObject  
+
+    return dataUser
+
+
 #Rutas de la aplicación
 @app.route('/')
 def home():
@@ -18,8 +36,10 @@ def home():
     columnNames = [column[0] for column in cursor.description]
     for record in myresult:
         insertObject.append(dict(zip(columnNames, record)))
-    cursor.close()
-    return render_template('index.html', data=insertObject)
+    cursor.close()   
+    dataUser = datosUsuarios()
+    return render_template('index.html', data=insertObject, datosU=dataUser )
+
 
 #Ruta para guardar usuarios en la Base de datos
 @app.route('/proceso', methods=['POST'])
@@ -63,6 +83,7 @@ def edit(id_proceso):
         db.database.commit()
         
     return redirect(url_for('home'))
+
 
 if __name__ == '__main__':   
     app.run(debug=True, port=4000)

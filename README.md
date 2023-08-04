@@ -3,7 +3,6 @@ In this repository the development of a task manager application is observed, ma
 
 ## Requisitos previos
 * Python [python download](https://www.python.org/downloads/release/python-31010/)
-* pip [pip download](https://pip.pypa.io/en/stable/installation/)
 ---
 
 ```sh

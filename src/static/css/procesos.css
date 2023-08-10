@@ -158,8 +158,8 @@ td {
 }
 
 .icono {
-    border-radius: 40% !important;
-    background-color: #afceff !important;
+    border-radius: 50% !important;
+    background-color: #82b1e7 !important;
     color: #ffffff !important;
     font-size: 1.5rem !important;
     margin-left: 18rem !important;
@@ -170,13 +170,46 @@ td {
 }
 
 .dropdown-menu {
-    max-height: 200px; 
+    width: 99% !important; 
     overflow-y: auto; 
 }
-.dropdown-menu li {
-    background-color: rgba(100, 148, 237, 0) !important;
+#submenu{
+    width: 30% !important; 
+    overflow-y: auto;
 }
-/* 
--webkit-box-shadow: 0 3px #ccc !important; 
--moz-box-shadow: 0 3px #ccc !important; 
-box-shadow: 0 3px #ccc !important;  */
+.dropdown-menu li {
+    background-color: rgba(142, 180, 252, 0) !important;
+}
+
+.dropdowns-menu {
+    width: 99% !important; 
+    overflow-y: auto; 
+}
+.dropdowns-menu li {
+    background-color: rgba(142, 180, 252, 0) !important;
+}
+
+.NombreUsuario{
+    cursor: pointer;
+    width: 95%;
+    text-align: center;
+    border: solid 0.3px;
+    border-color: #aca6a6 !important;
+    border-radius: 10px;
+}
+
+.usuariosSelect[type="checkbox"]:checked + .NombreUsuario{
+    cursor: pointer;
+    background-color: #82b1e7;
+    width: 95%;
+    text-align: center;
+    color: #f7f7f7;
+}
+
+.usuariosSelect{
+    opacity: 0;
+}
+
+.boton{
+    height: 2.2rem !important;
+}

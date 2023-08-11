@@ -195,7 +195,7 @@ td {
     text-align: center;
     border: solid 0.3px;
     border-color: #aca6a6 !important;
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 .usuariosSelect[type="checkbox"]:checked + .NombreUsuario{

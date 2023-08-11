@@ -87,7 +87,7 @@
                             <th scope="col" class="col-4"><i class="fa-solid fa-book"></i> Descripcion</th>
                             <th scope="col"><i class="fa-regular fa-calendar-days"></i> Duración</th>
                             <th scope="col" class="col-1"><i class="fa-regular fa-eye"></i> Vista</th>
-                            <th scope="col" ><i class="fa-regular fa-user"></i> Asignado</th>
+                            <th scope="col"><i class="fa-regular fa-user"></i> Asignado</th>
                         </tr>
                     </thead>
 
@@ -101,12 +101,11 @@
                             <td class="descripcion">{{datos.Descripcion}}</td>
                             <td>{{datos.Fecha_creacion}} <br> {{datos.Fecha_terminación}}</td>
                             <td><button type="button" data-bs-toggle="modal"
-                                    data-bs-target="#modal-3{{datos.id_proceso}}" class="boton btn btn-primary btn-sm">Ver
+                                    data-bs-target="#modal-3{{datos.id_proceso}}"
+                                    class="boton btn btn-primary btn-sm">Ver
                                     más...</button></td>
                             <td>
-
                                 {% if datos.users %}
-
                                 <button class="btnAsignar" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false"><i class="fa-solid fa-user"></i>.</button>
                                 <ul class="dropdown-menu" id="submenu">
@@ -139,28 +138,24 @@
                                             <input type="text" class="form-control mb-3" name="Descripcion"
                                                 value="{{datos.Descripcion}}">
                                             <hr>
+                                            {% if datos.users %}
                                             <button class="btnAsignar" type="button" data-bs-toggle="dropdown"
-                                                aria-expanded="false"><i class="fa-solid fa-user"></i> Asignar
+                                                aria-expanded="false"><i class="fa-solid fa-user"></i> Editar
                                                 personal...</button>
+                                            <ul class="dropdown-menu" id="submenu">
+                                                {% for usuario in datos.users.split(',') %}
+                                                <li>{{ usuario }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                            {% else %}
+                                            <p>Ningún usuario <br> asignado.</p>
+                                            {% endif %}
                                             <hr>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Cerrar</button>
                                                 <button type="submit" class="btn btn-primary">Guardar</button>
                                             </div>
-
-                                            <ul class="dropdown-menu">
-                                                {% for Usuario in datosU %}
-                                                <li>
-                                                    <input type="checkbox" class="usuariosSelect"
-                                                        name="usuarios_seleccionados" value="{{ Usuario.id }}"
-                                                        id="{{Usuario.id}}">
-                                                    <label for="{{Usuario.id}}" id="AsignarUsu" class="NombreUsuario">
-                                                        {{Usuario.fullname}}
-                                                    </label>
-                                                </li>
-                                                {% endfor %}
-                                            </ul>
                                         </form>
                                     </div>
                                 </div>

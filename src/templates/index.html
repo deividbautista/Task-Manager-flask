@@ -138,13 +138,22 @@
                                             <input type="text" class="form-control mb-3" name="Descripcion"
                                                 value="{{datos.Descripcion}}">
                                             <hr>
+
                                             {% if datos.users %}
                                             <button class="btnAsignar" type="button" data-bs-toggle="dropdown"
                                                 aria-expanded="false"><i class="fa-solid fa-user"></i> Editar
                                                 personal...</button>
-                                            <ul class="dropdown-menu" id="submenu">
-                                                {% for usuario in datos.users.split(',') %}
-                                                <li>{{ usuario }}</li>
+
+                                            <ul class="dropdown-menu" id="submenu2">
+                                                {% for Usuario in datosU %}
+                                                <li>
+                                                    <input type="checkbox" class="usuariosSelect"
+                                                        name="usuarios_seleccionados" value="{{ Usuario.id }}"
+                                                        id="{{Usuario.id}}">
+                                                    <label for="{{Usuario.id}}" id="AsignarUsu" class="NombreUsuario">
+                                                        {{Usuario.fullname}}
+                                                    </label>
+                                                </li>
                                                 {% endfor %}
                                             </ul>
                                             {% else %}
@@ -199,6 +208,27 @@
                             </div>
                         </div>
                         <!-- Fin modal-3 -->
+
+                        <!-- Modal 4 -->
+                        <div class="modal fade" id="modal-4{{datos.id_proceso}}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel-3" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{datos.Titulo}}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <!-- Cuerpo del modal donde encontramos el formualrio con los datos del usario -->
+                                    <div class="modal-body">
+                                        <h1>hola</h1>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin modal-4 -->
                         {% endfor %}
                     </tbody>
                 </table>

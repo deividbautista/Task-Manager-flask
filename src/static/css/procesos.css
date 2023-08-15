@@ -103,7 +103,7 @@ li p {
 table {
     border-radius: 50px !important;
     border-collapse: collapse !important;
-    border: solid 1px #0c011bab !important;
+    border-color: #c0c0c0 !important;
     table-layout: fixed !important;
 }
 
@@ -212,4 +212,19 @@ td {
 
 .boton{
     height: 2.2rem !important;
+}
+
+.NombreAsignado{
+    border-radius: 2px;
+    background-color: #EFEFEF;
+}
+.NombreAsignado label{
+    margin-bottom: 2px;
+    padding-left: 4px;
+}
+
+.btnEliminarAsignacion{
+    border: none;
+    background: none;
+    float: right;
 }

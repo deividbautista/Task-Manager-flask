@@ -79,12 +79,12 @@
 
                 <!-- Tabla -->
 
-                <table class="table table-bordered ">
+                <table class="table table-bordered table-striped ">
                     <thead>
                         <tr>
-                            <th scope="col" class="col-2"><i class="fa-solid fa-hashtag"></i> Número proceso</th>
-                            <th scope="col" class="col-2"><i class="fa-solid fa-heading"></i> Titulo</th>
-                            <th scope="col" class="col-4"><i class="fa-solid fa-book"></i> Descripcion</th>
+                            <th scope="col" class="col-2"> Número proceso</th>
+                            <th scope="col" class="col-2"> Titulo</th>
+                            <th scope="col" class="col-4"> Descripcion</th>
                             <th scope="col"><i class="fa-regular fa-calendar-days"></i> Duración</th>
                             <th scope="col" class="col-1"><i class="fa-regular fa-eye"></i> Vista</th>
                             <th scope="col"><i class="fa-regular fa-user"></i> Asignado</th>
@@ -131,20 +131,35 @@
                                     </div>
                                     <div class="modal-body">
                                         <form action="/edit/{{datos.id_proceso}}" method="post">
-                                            <label>Titulo</label>
+                                            <label>Titulo:</label>
                                             <input type="text" class="form-control mb-3" name="Titulo"
                                                 value="{{datos.Titulo}}">
-                                            <label>Descripción</label>
+                                            <label>Descripción:</label>
                                             <input type="text" class="form-control mb-3" name="Descripcion"
                                                 value="{{datos.Descripcion}}">
                                             <hr>
-
+                                            <label>Personal asignado:</label>
+                                            <br>
                                             {% if datos.users %}
-                                            <button class="btnAsignar" type="button" data-bs-toggle="dropdown"
-                                                aria-expanded="false"><i class="fa-solid fa-user"></i> Editar
-                                                personal...</button>
+                                            {% for usuario in datos.users.split(',') %}
+                                            <br>
+                                            <div class="NombreAsignado">
+                                                <label>
+                                                    {{usuario}}
+                                                </label>
+                                                <button class="btnEliminarAsignacion" data-user-id="{{ usuario.id }}"><i
+                                                        class="fa-solid fa-trash-can"></i></button>
+                                            </div>
+                                            {% endfor %}
+                                            {% else %}
+                                            <p>Ningún usuario <br> asignado.</p>
+                                            {% endif %}
 
-                                            <ul class="dropdown-menu" id="submenu2">
+                                            <hr>
+                                            <button class="btnAsignar" type="button" data-bs-toggle="dropdown"
+                                                aria-expanded="false"><i class="fa-solid fa-plus"></i> Agregar
+                                                personal...</button>
+                                            <ul class="dropdown-menu">
                                                 {% for Usuario in datosU %}
                                                 <li>
                                                     <input type="checkbox" class="usuariosSelect"
@@ -156,10 +171,8 @@
                                                 </li>
                                                 {% endfor %}
                                             </ul>
-                                            {% else %}
-                                            <p>Ningún usuario <br> asignado.</p>
-                                            {% endif %}
-                                            <hr>
+                                            <br>
+                                            <br>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Cerrar</button>

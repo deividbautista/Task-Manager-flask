@@ -1,5 +1,5 @@
 // Obtén todos los labels de los usuarios
-const userLabels = document.querySelectorAll(".dropdown-menu li label");
+const userLabels = document.querySelectorAll(".NombreUsuario");
 const idlabel = document.querySelectorAll(".usuariosSeleccionados");
 const boton  = document.getElementById("boton");
 const checkboxes = document.querySelectorAll(".usuariosSelect");

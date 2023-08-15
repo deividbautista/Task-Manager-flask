@@ -210,6 +210,11 @@ td {
     opacity: 0;
 }
 
+.UsuariosAsignados{
+    width: 100%;
+    text-align: center;
+}
+
 .boton{
     height: 2.2rem !important;
 }

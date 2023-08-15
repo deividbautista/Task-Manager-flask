@@ -110,7 +110,10 @@
                                     aria-expanded="false"><i class="fa-solid fa-user"></i>.</button>
                                 <ul class="dropdown-menu" id="submenu">
                                     {% for usuario in datos.users.split(',') %}
-                                    <li>{{ usuario }}</li>
+                                    <label id="AsignarUsu" class="UsuariosAsignados">
+                                        {{usuario}}
+                                    </label>
+                                    <br>
                                     {% endfor %}
                                 </ul>
                                 {% else %}

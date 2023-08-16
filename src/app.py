@@ -11,9 +11,9 @@ app = Flask(__name__, template_folder = template_dir)
 
 def idAleatorio():
     # Caracteres que puede poseer el string aleatorio.
-    id_aleatorio = "0123456789"
+    id_aleatorio = "123456789"
     # Logintud determinada para el estring aleatorio.
-    longitud         = 10
+    longitud         = 9
     # Utilizamos la función upper para combertir los caracteres en mayuscula.
     secuencia        = id_aleatorio.upper()
     # Definimos la variable "resultado_aleatorio", que con la función sample 
@@ -76,6 +76,7 @@ def addUser():
     asignados = request.form.getlist('usuarios_seleccionados')
 
     if Titulo and Descripcion:
+        print("EL id extraño negro: " +id_proceso)
         cursor = db.database.cursor()
         sql = "INSERT INTO procesos (id_proceso, Titulo, Descripcion, Fecha_terminación) VALUES (%s, %s, %s, %s)"
         data = (id_proceso, Titulo, Descripcion, Fecha)

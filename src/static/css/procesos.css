@@ -221,15 +221,19 @@ td {
 }
 
 .NombreAsignado{
-    border-radius: 2px;
-    background-color: #f2f2f2;
+    border-radius: 10px;
+    background-color: #f1faee;
 }
+
 .NombreAsignado label{
-    margin-bottom: 2px;
+    margin-top: 3px;
+    margin-bottom: 3px;
     padding-left: 4px;
 }
 
 .btnEliminarAsignacion{
+    margin-top: 3px;
+    margin-bottom: 3px;
     border: none;
     background: none;
     float: right;

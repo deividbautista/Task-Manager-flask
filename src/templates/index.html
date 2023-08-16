@@ -54,7 +54,7 @@
                                             personal...</button>
                                         <br><br>
                                         <hr>
-                                        <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar</button>
+                                        <button class="principal btn btn-primary mb-3 mt-4" type="submit">Guardar</button>
 
                                         <ul class="dropdown-menu">
                                             {% for Usuario in datosU %}
@@ -79,7 +79,7 @@
 
                 <!-- Tabla -->
 
-                <table class="table table-bordered table-striped ">
+                <table class="table table-striped ">
                     <thead>
                         <tr>
                             <th scope="col" class="col-2"> Número proceso</th>
@@ -102,7 +102,7 @@
                             <td>{{datos.Fecha_creacion}} <br> {{datos.Fecha_terminación}}</td>
                             <td><button type="button" data-bs-toggle="modal"
                                     data-bs-target="#modal-3{{datos.id_proceso}}"
-                                    class="boton btn btn-primary btn-sm">Ver
+                                    class="principal boton btn btn-primary btn-sm">Ver
                                     más...</button></td>
                             <td>
                                 {% if datos.users %}
@@ -177,9 +177,9 @@
                                             <br>
                                             <br>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
+                                                <button type="button" class="secundario btn btn-secondary"
                                                     data-bs-dismiss="modal">Cerrar</button>
-                                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                                <button type="submit" class="principal btn btn-primary">Guardar</button>
                                             </div>
                                         </form>
                                     </div>
@@ -213,11 +213,11 @@
                                         <button class="btnReport btn btn-primary btn-sm"
                                             id="btn-edit{{datos.id_proceso}}" data-bs-toggle="modal"
                                             data-bs-target="#modal{{datos.id_proceso}}">Reporte...</button>
-                                        <button class="btn btn-primary btn-sm" id="btn-edit{{datos.id_proceso}}"
+                                        <button class="principal btn btn-primary btn-sm" id="btn-edit{{datos.id_proceso}}"
                                             data-bs-toggle="modal" data-bs-target="#modal{{datos.id_proceso}}">Editar
                                             proceso</button>
                                         <a href="{{url_for('delete', idP=datos.id_proceso)}}"
-                                            class="btn btn-danger btn-sm">Borrar proceso</a>
+                                            class="eliminar btn btn-danger btn-sm">Borrar proceso</a>
                                     </div>
 
                                 </div>

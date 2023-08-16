@@ -47,7 +47,7 @@ h1 {
 .boton-tareas:hover {
     cursor: pointer;
     color: antiquewhite;
-    background-color: rgb(70, 89, 170);
+    background-color: #16425B;
     font-size: 1.1rem;
 }
 
@@ -108,7 +108,8 @@ table {
 }
 
 tr {
-    background: #a49afc !important;
+    background: #6096ba !important;
+    font-size: 1rem;
 }
 
 td {
@@ -221,7 +222,7 @@ td {
 
 .NombreAsignado{
     border-radius: 2px;
-    background-color: #EFEFEF;
+    background-color: #f2f2f2;
 }
 .NombreAsignado label{
     margin-bottom: 2px;
@@ -232,4 +233,20 @@ td {
     border: none;
     background: none;
     float: right;
+}
+
+.eliminar{
+    border-color: #a4161a !important;
+    background-color: #a4161a !important;
+}
+
+.principal{
+    color: black !important;
+    border-color: #62b6cb !important;
+    background-color: #62b6cb !important;
+}
+
+.secundario{
+    border-color: #33415c !important;
+    background-color: #33415c !important;
 }

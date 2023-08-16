@@ -46,11 +46,11 @@ def home():
     cursor = db.database.cursor()
     # cursor.execute("SELECT * FROM procesos")
     query = """
-    SELECT p.*, GROUP_CONCAT(u.fullname) AS users
+    SELECT p.*, GROUP_CONCAT(u.id) AS id_usuario, GROUP_CONCAT(u.fullname) AS nombre_usuario
     FROM procesos p
     LEFT JOIN asignaciones a ON p.id_proceso = a.id_proceso
     LEFT JOIN users u ON a.id = u.id
-    GROUP BY p.id_proceso
+    GROUP BY p.id_proceso;
     """
     cursor.execute(query)
     myresult = cursor.fetchall()
@@ -94,7 +94,6 @@ def addUser():
     return redirect(url_for('home'))
 
 
-
 @app.route('/delete/<string:idP>')
 def delete(idP):
     dato = (idP)
@@ -103,6 +102,9 @@ def delete(idP):
     cursor.execute(sql.format(dato))
     db.database.commit()
     return redirect(url_for('home'))
+
+
+
 
 
 @app.route('/edit/<string:id_proceso>', methods=['POST'])

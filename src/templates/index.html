@@ -54,7 +54,8 @@
                                             personal...</button>
                                         <br><br>
                                         <hr>
-                                        <button class="principal btn btn-primary mb-3 mt-4" type="submit">Guardar</button>
+                                        <button class="principal btn btn-primary mb-3 mt-4"
+                                            type="submit">Guardar</button>
 
                                         <ul class="dropdown-menu">
                                             {% for Usuario in datosU %}
@@ -105,11 +106,11 @@
                                     class="principal boton btn btn-primary btn-sm">Ver
                                     más...</button></td>
                             <td>
-                                {% if datos.users %}
+                                {% if datos.nombre_usuario %}
                                 <button class="btnAsignar" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false"><i class="fa-solid fa-user"></i>.</button>
                                 <ul class="dropdown-menu" id="submenu">
-                                    {% for usuario in datos.users.split(',') %}
+                                    {% for usuario in datos.nombre_usuario.split(',') %}
                                     <label id="AsignarUsu" class="UsuariosAsignados">
                                         {{usuario}}
                                     </label>
@@ -143,20 +144,28 @@
                                             <hr>
                                             <label>Personal asignado:</label>
                                             <br>
-                                            {% if datos.users %}
-                                            {% for usuario in datos.users.split(',') %}
+
+                                            {% if datos.nombre_usuario %}
+                                            {% for asignado in datos.nombre_usuario.split(',') %}
                                             <br>
                                             <div class="NombreAsignado">
                                                 <label>
-                                                    {{usuario}}
+                                                    {{asignado}}
                                                 </label>
-                                                <button class="btnEliminarAsignacion" data-user-id="{{ usuario.id }}"><i
+
+                                                <form action="/delete_asignacion" method="post">
+                                                    <input type="hidden" name="idU" value="{{datos.id_usuario}}">
+                                                    <input type="hidden" name="idP" value="{{datos.id_proceso}}">
+                                                    <button class="btnEliminarAsignacion"><i
                                                         class="fa-solid fa-trash-can"></i></button>
+                                                </form>
+                                                
                                             </div>
                                             {% endfor %}
                                             {% else %}
                                             <p>Ningún usuario asignado.</p>
                                             {% endif %}
+
                                             <hr>
                                             <button class="btnAsignar" type="button" data-bs-toggle="dropdown"
                                                 aria-expanded="false"><i class="fa-solid fa-plus"></i> Agregar
@@ -212,8 +221,9 @@
                                         <button class="btnReport btn btn-primary btn-sm"
                                             id="btn-edit{{datos.id_proceso}}" data-bs-toggle="modal"
                                             data-bs-target="#modal{{datos.id_proceso}}">Reporte...</button>
-                                        <button class="principal btn btn-primary btn-sm" id="btn-edit{{datos.id_proceso}}"
-                                            data-bs-toggle="modal" data-bs-target="#modal{{datos.id_proceso}}">Editar
+                                        <button class="principal btn btn-primary btn-sm"
+                                            id="btn-edit{{datos.id_proceso}}" data-bs-toggle="modal"
+                                            data-bs-target="#modal{{datos.id_proceso}}">Editar
                                             proceso</button>
                                         <a href="{{url_for('delete', idP=datos.id_proceso)}}"
                                             class="eliminar btn btn-danger btn-sm">Borrar proceso</a>

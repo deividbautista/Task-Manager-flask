@@ -144,7 +144,6 @@
                                             <hr>
                                             <label>Personal asignado:</label>
                                             <br>
-
                                             {% if datos.nombre_usuario %}
                                             {% for asignado in datos.nombre_usuario.split(',') %}
                                             <br>
@@ -152,20 +151,17 @@
                                                 <label>
                                                     {{asignado}}
                                                 </label>
-
-                                                <form action="/delete_asignacion" method="post">
-                                                    <input type="hidden" name="idU" value="{{datos.id_usuario}}">
-                                                    <input type="hidden" name="idP" value="{{datos.id_proceso}}">
-                                                    <button class="btnEliminarAsignacion"><i
-                                                        class="fa-solid fa-trash-can"></i></button>
-                                                </form>
-                                                
+                                                <!-- <input type="hidden" class="nameU" name="Nombre_usuario" value="{{ datos.id_proceso}}">
+                                                <label class="btnEliminarAsignacion"><i
+                                                    class="iconoX fa-solid fa-xmark"></i></label> -->
+                                                <button type="submit" class="btnEliminarAsignacion" 
+                                                data-id="{{datos.id_proceso}}" data-nombre="Usuario1"><i
+                                                class="iconoX fa-solid fa-xmark"></i></button>
                                             </div>
                                             {% endfor %}
                                             {% else %}
                                             <p>Ningún usuario asignado.</p>
                                             {% endif %}
-
                                             <hr>
                                             <button class="btnAsignar" type="button" data-bs-toggle="dropdown"
                                                 aria-expanded="false"><i class="fa-solid fa-plus"></i> Agregar

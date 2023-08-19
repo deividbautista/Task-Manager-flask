@@ -104,7 +104,19 @@ def delete(idP):
     return redirect(url_for('home'))
 
 
-
+@app.route('/delete_asignacion', methods=['POST'])
+def deleteAsignados():
+    idU = request.form['idU']
+    idP = request.form['idP']
+    dato = (idU, idP)
+    print("pendejo")
+    print(dato)
+    cursor = db.database.cursor()
+    sql ="""DELETE FROM asignaciones
+            WHERE id = {0} AND id_proceso = {1}"""
+    cursor.execute(sql.format(dato[0],dato[1]))
+    db.database.commit()
+    return redirect(url_for('home'))
 
 
 @app.route('/edit/<string:id_proceso>', methods=['POST'])

@@ -239,6 +239,7 @@ td {
     background: none;
     float: right;
     color: #000814;
+    cursor: pointer;
 }
 
 .btnEliminarAsignacion:hover{

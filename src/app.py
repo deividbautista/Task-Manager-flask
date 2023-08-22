@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from random import sample
 import os
 import database as db
@@ -135,19 +135,19 @@ def delete(idP):
     return redirect(url_for('home'))
 
 
-@app.route('/delete_asignacion', methods=['POST'])
+@app.route('/deleteAsignacion', methods=['POST'])
 def deleteAsignados():
-    idU = request.form['idU']
-    idP = request.form['idP']
-    dato = (idU, idP)
-    print("pendejo")
-    print(dato)
+    data = request.json
+    idU = data.get("id_asignado")
+    idP = data.get("id_proceso")
+
     cursor = db.database.cursor()
-    sql ="""DELETE FROM asignaciones
-            WHERE id = {0} AND id_proceso = {1}"""
-    cursor.execute(sql.format(dato[0],dato[1]))
+    sql = """DELETE FROM asignaciones
+             WHERE id = %s AND id_proceso = %s"""
+             
+    cursor.execute(sql, (idU, idP))
     db.database.commit()
-    return redirect(url_for('home'))
+    return jsonify({"status": "success", "message": idP})
 
 
 @app.route('/edit/<string:id_proceso>', methods=['POST'])

@@ -107,43 +107,51 @@ document.addEventListener('DOMContentLoaded', () => {
 // });
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Obtiene todos los botones de clase "btnEliminarAsignacion"
   var buttons = document.querySelectorAll(".btnEliminarAsignacion");
 
   // Agrega un controlador de eventos a cada botón
-  buttons.forEach(function(button) {
-      button.addEventListener("click", function(event) {
+  buttons.forEach(function (button) {
+    button.addEventListener("click", function (event) {
 
-          // Obtiene los atributos "data"
-          var idProceso = button.getAttribute("data-id");
-          var idAsignado = button.getAttribute("data-id-asignado");
+      // Obtiene los atributos "data"
+      var idProceso = button.getAttribute("data-id");
+      var idAsignado = button.getAttribute("data-id-asignado");
 
-          // Crea un objeto de datos a enviar en la solicitud
-          var data = {
-              id_proceso: idProceso,
-              id_asignado: idAsignado
-          };
+      // Crea un objeto de datos a enviar en la solicitud
+      var data = {
+        id_proceso: idProceso,
+        id_asignado: idAsignado
+      };
+      var confirmacion = confirm("¿Estás seguro de que deseas eliminar al usuario?");
 
-          // Realiza la solicitud utilizando fetch
-          fetch("/deleteAsignacion", {
-              method: "POST",
-              headers: {
-                  "Content-Type": "application/json" // Establece el tipo de medio como JSON
-              },
-              body: JSON.stringify(data)
-          })
+      // Verificar si el usuario confirmó la eliminación
+      if (confirmacion) {
+        // Aquí puedes agregar la lógica para eliminar al usuario
+        fetch("/deleteAsignacion", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json" // Establece el tipo de medio como JSON
+          },
+          body: JSON.stringify(data)
+        })
           .then(response => response.json())
           .then(data => {
-              // Maneja la respuesta del servidor aquí
-              console.log(data);
-              // Recarga la página o realiza otras acciones según sea necesario
+            // Maneja la respuesta del servidor aquí
+            console.log(data);
+            // Recarga la página o realiza otras acciones según sea necesario
           })
           .catch(error => {
-              // Maneja los errores aquí
-              console.error(error);
+            // Maneja los errores aquí
+            console.error(error);
           });
-      });
+        alert("Usuario eliminado exitosamente");
+      } else {
+        alert("Eliminación cancelada");
+      }
+      // Realiza la solicitud utilizando fetch
+    });
   });
 });
 

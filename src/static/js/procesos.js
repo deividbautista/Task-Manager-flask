@@ -15,17 +15,42 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  const btnEliminarAsignacion = document.querySelectorAll('.btnEliminarAsignacion');
-  const nombreU = document.querySelectorAll(".nameU")
-  btnEliminarAsignacion.forEach(button => {
-      button.addEventListener('click', function() {
+// document.addEventListener('DOMContentLoaded', function() {
+//   const btnEliminarAsignacion = document.querySelectorAll('.btnEliminarAsignacion');
+//   const nombreU = document.querySelectorAll(".nameU")
+//   btnEliminarAsignacion.forEach(button => {
+//       button.addEventListener('click', function() {
 
-          console.log(nombreU.value);
-          // Aquí puedes agregar la lógica para realizar la eliminación con los datos obtenidos
-      });
+//           console.log(nombreU.value);
+//           // Aquí puedes agregar la lógica para realizar la eliminación con los datos obtenidos
+//       });
+//   });
+// });
+
+
+// Espera a que el documento esté listo
+document.addEventListener("DOMContentLoaded", function () {
+  // Selecciona todos los botones con la clase "btnEliminarAsignacion"
+  var buttons = document.querySelectorAll(".btnEliminarAsignacion");
+
+  // Agrega un manejador de eventos a cada botón
+  buttons.forEach(function (button) {
+    button.addEventListener("click", function (event) {
+      // Evita el comportamiento por defecto del botón (en este caso, evitará la recarga de la página)
+      event.preventDefault();
+
+      // Obtiene los atributos personalizados data-id y data-id-asignado del botón
+      var idProceso = button.getAttribute("data-id");
+      var idUsuario = button.getAttribute("data-id-asignado");
+
+      // Muestra los datos en la consola
+      console.log("ID de Proceso:", idProceso);
+      console.log("ID de Usuario asignado:", idUsuario);
+    });
   });
 });
+
+
 
 // Agrega un evento click a cada label.
 userLabels.forEach(label => {

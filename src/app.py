@@ -41,10 +41,32 @@ def datosUsuarios():
 
 
 #Rutas de la aplicación
-@app.route('/')
+# @app.route('/')
+# def home():
+#     cursor = db.database.cursor()
+#     query = """
+#     SELECT p.*, GROUP_CONCAT(u.id) AS id_usuario, GROUP_CONCAT(u.fullname) AS nombre_usuario
+#     FROM procesos p
+#     LEFT JOIN asignaciones a ON p.id_proceso = a.id_proceso
+#     LEFT JOIN users u ON a.id = u.id
+#     GROUP BY p.id_proceso;
+#     """
+#     cursor.execute(query)
+#     myresult = cursor.fetchall()
+#     #Convertir los datos a diccionario
+#     insertObject = []
+#     columnNames = [column[0] for column in cursor.description]
+#     for record in myresult:
+#         insertObject.append(dict(zip(columnNames, record)))
+#     cursor.close()   
+#     dataUser = datosUsuarios()
+    
+#     return render_template('index.html', data=insertObject, datosU=dataUser )
+
+
+@app.route("/")
 def home():
     cursor = db.database.cursor()
-    # cursor.execute("SELECT * FROM procesos")
     query = """
     SELECT p.*, GROUP_CONCAT(u.id) AS id_usuario, GROUP_CONCAT(u.fullname) AS nombre_usuario
     FROM procesos p
@@ -53,16 +75,25 @@ def home():
     GROUP BY p.id_proceso;
     """
     cursor.execute(query)
-    myresult = cursor.fetchall()
-    #Convertir los datos a diccionario
-    insertObject = []
-    columnNames = [column[0] for column in cursor.description]
-    for record in myresult:
-        insertObject.append(dict(zip(columnNames, record)))
-    cursor.close()   
+    data = cursor.fetchall()
     dataUser = datosUsuarios()
-    
-    return render_template('index.html', data=insertObject, datosU=dataUser )
+
+    # Procesa los resultados para formar una estructura de datos más adecuada
+    processed_data = []
+    for row in data:
+        proceso = {
+            "id_proceso": row[0],  # Usar el índice numérico correspondiente
+            "Titulo": row[1],      # Usar el índice numérico correspondiente
+            "Descripcion": row[2], # Usar el índice numérico correspondiente
+            "Fecha_creacion": row[3], # Usar el índice numérico correspondiente
+            "Fecha_terminación": row[4], # Usar el índice numérico correspondiente
+            "nombre_usuario": row[6].split(",") if row[6] is not None else [],
+            "id_usuario": row[5].split(",") if row[5] is not None else [],
+        }
+        processed_data.append(proceso)
+
+    cursor.close()  # Cierra el cursor aquí
+    return render_template("index.html", data=processed_data, datosU=dataUser)
 
 
 

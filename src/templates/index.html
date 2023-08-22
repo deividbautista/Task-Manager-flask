@@ -108,11 +108,13 @@
                             <td>
                                 {% if datos.nombre_usuario %}
                                 <button class="btnAsignar" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false"><i class="fa-solid fa-user"></i>.</button>
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-user"></i>.
+                                </button>
                                 <ul class="dropdown-menu" id="submenu">
-                                    {% for usuario in datos.nombre_usuario.split(',') %}
+                                    {% for usuario in datos.nombre_usuario %}
                                     <label id="AsignarUsu" class="UsuariosAsignados">
-                                        {{usuario}}
+                                        {{ usuario }}
                                     </label>
                                     <br>
                                     {% endfor %}
@@ -120,6 +122,7 @@
                                 {% else %}
                                 <p>Ningún usuario <br> asignado.</p>
                                 {% endif %}
+
                             </td>
                         </tr>
 
@@ -145,20 +148,25 @@
                                             <label>Personal asignado:</label>
                                             <br>
                                             {% if datos.nombre_usuario %}
-                                            {% for asignado in datos.nombre_usuario.split(',') %}
-                                            <br>
                                             <div class="NombreAsignado">
+                                                {% for usuario in datos.nombre_usuario %}
+                                                {% if usuario %}
                                                 <label>
-                                                    {{asignado}}
+                                                    {{ usuario }}
                                                 </label>
-                                                <!-- <input type="hidden" class="nameU" name="Nombre_usuario" value="{{ datos.id_proceso}}">
-                                                <label class="btnEliminarAsignacion"><i
-                                                    class="iconoX fa-solid fa-xmark"></i></label> -->
-                                                <button type="submit" class="btnEliminarAsignacion" 
-                                                data-id="{{datos.id_proceso}}" data-nombre="Usuario1"><i
-                                                class="iconoX fa-solid fa-xmark"></i></button>
+                                                <!-- Si usuario es una cadena, entonces aplica split -->
+                                                {% if usuario is string %}
+                                                <button type="submit" class="btnEliminarAsignacion"
+                                                    data-id="{{ datos.id_proceso }}"
+                                                    data-id-asignado="{{ datos.id_usuario[loop.index0] }}">
+                                                    <i class="iconoX fa-solid fa-xmark"></i>
+                                                </button>
+                                                {% endif %}
+                                                <!-- Fin de la comprobación -->
+                                                <br>
+                                                {% endif %}
+                                                {% endfor %}
                                             </div>
-                                            {% endfor %}
                                             {% else %}
                                             <p>Ningún usuario asignado.</p>
                                             {% endif %}

@@ -107,7 +107,6 @@ def addUser():
     asignados = request.form.getlist('usuarios_seleccionados')
 
     if Titulo and Descripcion:
-        print("EL id extraño negro: " +id_proceso)
         cursor = db.database.cursor()
         sql = "INSERT INTO procesos (id_proceso, Titulo, Descripcion, Fecha_terminación) VALUES (%s, %s, %s, %s)"
         data = (id_proceso, Titulo, Descripcion, Fecha)
@@ -121,7 +120,6 @@ def addUser():
             data = (Numid, id_proceso)
             cursor.execute(sql, data)
             db.database.commit()
-            print(Numid)
     return redirect(url_for('home'))
 
 

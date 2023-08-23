@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
   buttons.forEach(function (button) {
     button.addEventListener("click", function (event) {
 
+      event.preventDefault(); // Previene la acción por defecto del botón
       // Obtiene los atributos "data"
       var idProceso = button.getAttribute("data-id");
       var idAsignado = button.getAttribute("data-id-asignado");
@@ -124,11 +125,19 @@ document.addEventListener("DOMContentLoaded", function () {
         id_proceso: idProceso,
         id_asignado: idAsignado
       };
-      var confirmacion = confirm("¿Estás seguro de que deseas eliminar al usuario?");
 
-      // Verificar si el usuario confirmó la eliminación
-      if (confirmacion) {
-        // Aquí puedes agregar la lógica para eliminar al usuario
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción eliminará la asignación de forma permanente.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          /// Aquí puedes agregar la lógica para eliminar al usuario
         fetch("/deleteAsignacion", {
           method: "POST",
           headers: {
@@ -146,15 +155,26 @@ document.addEventListener("DOMContentLoaded", function () {
             // Maneja los errores aquí
             console.error(error);
           });
-        alert("Usuario eliminado exitosamente");
-      } else {
-        alert("Eliminación cancelada");
-      }
-      // Realiza la solicitud utilizando fetch
+          Swal.fire(
+            'Eliminada',
+            'La asignación ha sido eliminada.',
+            'success'
+          ).then(() => {
+            // Refresca la ventana después de la confirmación
+            location.reload();
+          });
+          
+        } else {
+          Swal.fire(
+            'Cancelado',
+            'La eliminación de la asignación ha sido cancelada.',
+            'info'
+          );
+        }
+      });
     });
   });
 });
-
 
 // Agrega un evento click a cada label.
 userLabels.forEach(label => {

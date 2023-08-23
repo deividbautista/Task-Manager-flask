@@ -49,27 +49,11 @@
                                         <label for="fecha">Fecha Limite:</label>
                                         <input type="date" class="form-control mb-3" id="fecha" name="fecha">
                                         <hr>
-                                        <button class="btnAsignar" type="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false"><i class="fa-solid fa-user"></i> Asignar
-                                            personal...</button>
+                                        {%block rico%}{%endblock%}
                                         <br><br>
                                         <hr>
                                         <button class="principal btn btn-primary mb-3 mt-4"
                                             type="submit">Guardar</button>
-
-                                        <ul class="dropdown-menu">
-                                            {% for Usuario in datosU %}
-                                            <li>
-                                                <input type="checkbox" class="usuariosSelect"
-                                                    name="usuarios_seleccionados" value="{{ Usuario.id }}"
-                                                    id="{{Usuario.id}}">
-                                                <label for="{{Usuario.id}}" id="AsignarUsu" class="NombreUsuario">
-                                                    {{Usuario.fullname}}
-                                                </label>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-
                                     </div>
                                 </form>
                             </div>
@@ -79,7 +63,6 @@
                 <!-- Fin modal-2 -->
 
                 <!-- Tabla -->
-
                 <table class="table table-striped ">
                     <thead>
                         <tr>
@@ -172,8 +155,10 @@
                                             {% endif %}
                                             <hr>
                                             <button class="btnAsignar" type="button" data-bs-toggle="dropdown"
-                                                aria-expanded="false"><i class="fa-solid fa-plus"></i> Agregar
+                                                aria-expanded="false"><i class="fa-solid fa-user"></i> Asignar
                                                 personal...</button>
+                                            <br><br>
+                                            <hr>
                                             <ul class="dropdown-menu">
                                                 {% for Usuario in datosU %}
                                                 <li>

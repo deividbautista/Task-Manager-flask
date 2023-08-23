@@ -126,13 +126,15 @@ document.addEventListener("DOMContentLoaded", function () {
         id_asignado: idAsignado
       };
 
+      // Urilizamos la variable swal, la cual nos determinara los valores o caracteristicas 
+      // del alert que estamos exponiendo al usuario
       Swal.fire({
         title: '¿Estás seguro?',
         text: 'Esta acción eliminará la asignación de forma permanente.',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
+        confirmButtonColor: '#900C3F',
+        cancelButtonColor: '#33415c',
         confirmButtonText: 'Sí, eliminar',
         cancelButtonText: 'Cancelar'
       }).then((result) => {

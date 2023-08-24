@@ -159,10 +159,10 @@
                                                     data-id="{{ datos.id_proceso }}"
                                                     data-id-asignado="{{ datos.id_usuario[loop.index0] }}">
                                                     <i class="iconoX fa-solid fa-xmark"></i>
+                                                    
                                                 </button>
-                                                {% endif %}
-                                                <!-- Fin de la comprobación -->
                                                 <br>
+                                                {% endif %}
                                                 {% endif %}
                                                 {% endfor %}
                                             </div>
@@ -174,7 +174,6 @@
                                                 aria-expanded="false"><i class="fa-solid fa-user"></i> Asignar
                                                 personal...</button>
                                             <br><br>
-                                            <hr>
                                             <ul class="dropdown-menu">
                                                 {% for Usuario in datosU %}
                                                 <li>
@@ -187,8 +186,6 @@
                                                 </li>
                                                 {% endfor %}
                                             </ul>
-                                            <br>
-                                            <br>
                                             <div class="modal-footer">
                                                 <button type="button" class="secundario btn btn-secondary"
                                                     data-bs-dismiss="modal">Cerrar</button>
@@ -233,7 +230,6 @@
                                         <a href="{{url_for('delete', idP=datos.id_proceso)}}"
                                             class="eliminar btn btn-danger btn-sm">Borrar proceso</a>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

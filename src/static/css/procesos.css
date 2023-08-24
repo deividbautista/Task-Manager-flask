@@ -260,3 +260,13 @@ td {
     border-color: #33415c !important;
     background-color: #33415c !important;
 }
+
+.custom-confirm-button-class {
+    background-color: #7A316F !important; /* Cambia "your-color" al color deseado */
+    color: #ffffff !important;       /* Cambia "your-text-color" al color de texto deseado */
+    /* Otros estilos de botón personalizados aquí */
+}
+.custom-icon-class {
+    color: #A1C2F1 !important; /* Color de icono de exclamación*/
+    border-color: #A1C2F1 !important;
+}

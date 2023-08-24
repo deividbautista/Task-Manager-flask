@@ -75,11 +75,16 @@ document.addEventListener("DOMContentLoaded", function () {
           });
           
         } else {
-          Swal.fire(
-            'Cancelado',
-            'La eliminación de la asignación ha sido cancelada.',
-            'info'
-          );
+          Swal.fire({
+            title: 'Cancelado',
+            text: 'La eliminación de la asignación ha sido cancelada.',
+            icon: 'info',
+            customClass: {
+              confirmButton: 'custom-confirm-button-class',
+              icon: 'custom-icon-class',
+              container: 'custom-container-class'
+            }
+          });
         }
       });
     });

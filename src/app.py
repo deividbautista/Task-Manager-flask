@@ -1,45 +1,52 @@
+# Apartado en el que se importan todos los modulos necesarios para el proyecto.
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from random import sample
 import os
 import database as db
 
+# En este apartado realizamos la configuración de las rutas en flask.
 template_dir = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 template_dir = os.path.join(template_dir, 'src', 'templates')
 
+# En este apartado inicializamos la configuración de la ruta.
 app = Flask(__name__, template_folder = template_dir)
 
-
+# Definimos la función denominada "idAleatorio", la cual nos retornara un numero 
+# generado al azar, dentro de los valores 1 al 9, con una extención o longitud de 9 digitos o 9 caracteres
 def idAleatorio():
-    # Caracteres que puede poseer el string aleatorio.
+    # Caracteres que puede poseer el int aleatorio.
     id_aleatorio = "123456789"
-    # Logintud determinada para el estring aleatorio.
+    # Logintud determinada para el int aleatorio.
     longitud         = 9
     # Utilizamos la función upper para combertir los caracteres en mayuscula.
     secuencia        = id_aleatorio.upper()
     # Definimos la variable "resultado_aleatorio", que con la función sample 
-    # y los parametros de secuencia y longitud, generamos el string aleatorio.
+    # y los parametros de secuencia y longitud, generamos el int aleatorio.
     resultado_aleatorio  = sample(secuencia, longitud)
     # Volvemos a definir a la varibale "id_aleatorio", pero esta vez le 
-    # concatenamos el valor optenido de "resultado_aleatorio". 
+    # insertamos el valor optenido de "resultado_aleatorio". 
     id_aleatorio     = "".join(resultado_aleatorio)
-    # Finalmente retornamos de nuestra función el resultado con el string aleatorio.
+    # Finalmente retornamos de nuestra función el resultado con el valor aleatorio.
     return id_aleatorio
 
+# Definimos la función que retornara los datos de los usuarios.
 def datosUsuarios():
     cursor = db.database.cursor()
     cursor.execute("SELECT * FROM users")
     myresult = cursor.fetchall()
-    #Convertir los datos a diccionario
+    #Convertir los datos a diccionario.
     insertObject = []
     columnNames = [column[0] for column in cursor.description]
     for record in myresult:
         insertObject.append(dict(zip(columnNames, record)))
     cursor.close()  
-
+    #Almacenamos los datos o contenido obtenido de la consulta en la variable dataUser.
     dataUser=insertObject  
+    #Retorna la variable dataUser
     return dataUser
 
 
+# Tenemos la ruta principal donde se visualizaran los procesos almacenados en la BD.
 @app.route("/")
 def home():
     cursor = db.database.cursor()
@@ -72,8 +79,7 @@ def home():
     return render_template("index.html", data=processed_data, datosU=dataUser)
 
 
-
-#Ruta para guardar usuarios en la Base de datos
+# Ruta para guardar usuarios en la Base de datos.
 @app.route('/proceso', methods=['POST'])
 def addUser():
     Titulo = request.form['Titulo']
@@ -99,6 +105,7 @@ def addUser():
     return redirect(url_for('home'))
 
 
+# Ruta para eliminar los procesos registrados en la base de datos.
 @app.route('/delete/<string:idP>')
 def delete(idP):
     dato = (idP)
@@ -109,6 +116,7 @@ def delete(idP):
     return redirect(url_for('home'))
 
 
+# Ruta para eliminar las asignaciones en los procesos registrados en la base de datos.
 @app.route('/deleteAsignacion', methods=['POST'])
 def deleteAsignados():
     data = request.json
@@ -124,6 +132,7 @@ def deleteAsignados():
     return jsonify({"status": "success", "message": idP})
 
 
+# Ruta para realizar la actualización de los datos de los procesos.
 @app.route('/edit/<string:id_proceso>', methods=['POST'])
 def edit(id_proceso):
     Titulo = request.form['Titulo']
@@ -140,6 +149,7 @@ def edit(id_proceso):
     return redirect(url_for('home'))
 
 
+# Condicional para dar inicialización al proyecto.
 if __name__ == '__main__':   
     app.run(debug=True, port=8000)
 

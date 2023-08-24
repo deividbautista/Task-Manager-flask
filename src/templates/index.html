@@ -49,7 +49,23 @@
                                         <label for="fecha">Fecha Limite:</label>
                                         <input type="date" class="form-control mb-3" id="fecha" name="fecha">
                                         <hr>
-                                        {%block rico%}{%endblock%}
+                                        <button class="btnAsignar" type="button" data-bs-toggle="dropdown"
+                                            aria-expanded="false"><i class="fa-solid fa-user"></i> Asignar
+                                            personal...</button>
+                                        <br><br>
+                                        <hr>
+                                        <ul class="dropdown-menu">
+                                            {% for Usuario in datosU %}
+                                            <li>
+                                                <input type="checkbox" class="usuariosSelect"
+                                                    name="usuarios_seleccionados" value="{{ Usuario.id }}"
+                                                    id="{{Usuario.id}}">
+                                                <label for="{{Usuario.id}}" id="AsignarUsu" class="NombreUsuario">
+                                                    {{Usuario.fullname}}
+                                                </label>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
                                         <br><br>
                                         <hr>
                                         <button class="principal btn btn-primary mb-3 mt-4"
@@ -92,7 +108,7 @@
                                 {% if datos.nombre_usuario %}
                                 <button class="btnAsignar" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    <i class="fa-solid fa-user"></i>.
+                                    <i class="fa-solid fa-user"></i>
                                 </button>
                                 <ul class="dropdown-menu" id="submenu">
                                     {% for usuario in datos.nombre_usuario %}

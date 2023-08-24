@@ -44,10 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
         confirmButtonText: 'Sí, eliminar',
         cancelButtonText: 'Cancelar',
         customClass: {
-          // confirmButtonColor: '#900C3F',
-          // cancelButtonColor: '#33415c',
-          // confirmButtonText: 'Sí, eliminar',
-          // cancelButtonText: 'Cancelar'
           confirmButton: 'custom-button-confirmation-1',
           cancelButton: 'custom-button-cancel-1',
           icon: 'custom-icon-class-1'
@@ -55,23 +51,23 @@ document.addEventListener("DOMContentLoaded", function () {
       }).then((result) => {
         if (result.isConfirmed) {
           /// Aquí puedes agregar la lógica para eliminar al usuario
-        fetch("/deleteAsignacion", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json" // Establece el tipo de medio como JSON
-          },
-          body: JSON.stringify(data)
-        })
-          .then(response => response.json())
-          .then(data => {
-            // Maneja la respuesta del servidor aquí
-            console.log(data);
-            // Recarga la página o realiza otras acciones según sea necesario
+          fetch("/deleteAsignacion", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json" // Establece el tipo de medio como JSON
+            },
+            body: JSON.stringify(data)
           })
-          .catch(error => {
-            // Maneja los errores aquí
-            console.error(error);
-          });
+            .then(response => response.json())
+            .then(data => {
+              // Maneja la respuesta del servidor aquí
+              console.log(data);
+              // Recarga la página o realiza otras acciones según sea necesario
+            })
+            .catch(error => {
+              // Maneja los errores aquí
+              console.error(error);
+            });
           Swal.fire(
             'Eliminada',
             'La asignación ha sido eliminada.',
@@ -80,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Refresca la ventana después de la confirmación
             location.reload();
           });
-          
+
         } else {
           Swal.fire({
             title: 'Cancelado',
@@ -96,6 +92,61 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  var eliminarButtons = document.querySelectorAll('.eliminar');
+
+  eliminarButtons.forEach(function (eliminarButton) {
+    eliminarButton.addEventListener('click', function (e) {
+      e.preventDefault(); // Evita que el enlace se abra inmediatamente
+
+      var idProceso = this.getAttribute('data-id');
+      var deleteUrl = this.getAttribute('data-url');
+
+      // Muestra la alerta SweetAlert
+      Swal.fire({
+        // title: '¿Estás seguro?',
+        // text: 'Esta acción no se puede deshacer',
+        // icon: 'warning',
+        // showCancelButton: true,
+        // confirmButtonColor: '#3085d6',
+        // cancelButtonColor: '#d33',
+        // cancelButtonText: 'Cancelar',
+        // confirmButtonText: 'Sí, borrarlo'
+
+        title: '¿Estás seguro?',
+        text: 'Esta acción eliminara el proceso de manera permanente.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+        customClass: {
+          confirmButton: 'custom-button-confirmation-1',
+          cancelButton: 'custom-button-cancel-1',
+          icon: 'custom-icon-class-1'
+        }
+
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          // Si el usuario confirma, redirige a la página de borrado
+          window.location.href = deleteUrl;
+        } else {
+          Swal.fire({
+            title: 'Cancelado',
+            text: 'La eliminación de la asignación ha sido cancelada.',
+            icon: 'info',
+            customClass: {
+              confirmButton: 'custom-button-confirmation-2',
+              icon: 'custom-icon-class-2',
+            }
+          });
+        }
+      });
+    });
+  });
+});
+
 
 // Agrega un evento click a cada label.
 userLabels.forEach(label => {

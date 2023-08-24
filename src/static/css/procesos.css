@@ -199,8 +199,7 @@ td {
     padding-left: 8px;
 }
 
-/**/
-
+/* Sección estilo de botones*/
 .btnAsignar {
     outline: none;
     height: 2.2rem;
@@ -237,14 +236,27 @@ td {
 }
 
 .eliminar {
+    border-color: #ffffff00 !important;
+    background-color: #c70038c2 !important;
+    color: #000 !important;
+}
+
+.eliminar:hover{
     border-color: #900C3F !important;
     background-color: #900C3F !important;
+    color: #ffffff !important;
 }
 
 .principal {
     color: black !important;
     border-color: #8CABFF !important;
     background-color: #8CABFF !important;
+}
+
+.principal:hover {
+    color: rgb(255, 255, 255) !important;
+    border-color: #4F709C !important;
+    background-color: #4F709C !important;
 }
 
 .btnReport {
@@ -258,7 +270,7 @@ td {
     padding: 4.2px !important;
     color: rgb(255, 255, 255) !important;
     border-color: #ffffff00 !important;
-    background-color: rgb(119, 165, 252) !important;
+    background-color: #8ec9b3 !important;
 }
 
 .secundario {
@@ -293,5 +305,4 @@ td {
     /* Color de icono de exclamación*/
     border-color: #7a316f6c !important;
 }
-
-/**/
+/* Fin Sección estilo de botones*/

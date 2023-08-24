@@ -139,20 +139,6 @@ td {
     background-color: rgb(119, 165, 252);
 }
 
-.btnReport {
-    padding: 4.2px !important;
-    color: rgb(0, 0, 0) !important;
-    border-color: #ffffff00 !important;
-    background-color: rgb(152, 203, 216) !important;
-}
-
-.btnReport:hover {
-    padding: 4.2px !important;
-    color: rgb(255, 255, 255) !important;
-    border-color: #ffffff00 !important;
-    background-color: rgb(119, 165, 252) !important;
-}
-
 .text-break {
     text-align: justify;
     width: 80%;
@@ -231,6 +217,7 @@ td {
     padding-left: 8px;
 }
 
+/**/
 .btnEliminarAsignacion{
     margin-top: 3px;
     margin-right: 10px;
@@ -242,18 +229,32 @@ td {
 }
 
 .btnEliminarAsignacion:hover{
-    color: #000814;
+    color: rgb(70, 7, 31);
 }
 
 .eliminar{
-    border-color: #a4161a !important;
-    background-color: #a4161a !important;
+    border-color: #900C3F !important;
+    background-color: #900C3F !important;
 }
 
 .principal{
     color: black !important;
-    border-color: #62b6cb !important;
-    background-color: #62b6cb !important;
+    border-color: #8CABFF !important;
+    background-color: #8CABFF !important;
+}
+
+.btnReport {
+    padding: 4.2px !important;
+    color: rgb(0, 0, 0) !important;
+    border-color: #ffffff00 !important;
+    background-color: #A0E4CB !important;
+}
+
+.btnReport:hover {
+    padding: 4.2px !important;
+    color: rgb(255, 255, 255) !important;
+    border-color: #ffffff00 !important;
+    background-color: rgb(119, 165, 252) !important;
 }
 
 .secundario{
@@ -261,12 +262,26 @@ td {
     background-color: #33415c !important;
 }
 
-.custom-confirm-button-class {
+.custom-button-confirmation-1{
+    background-color: #900C3F !important;
+}
+
+.custom-button-cancel-1{
+    background-color: #33415c !important;
+}
+
+.custom-icon-class-1{
+    color: #900c3fe1 !important; /* Color de icono de exclamación*/
+    border-color: #900c3fe1 !important;
+}
+
+.custom-button-confirmation-2 {
     background-color: #7A316F !important; /* Cambia "your-color" al color deseado */
     color: #ffffff !important;       /* Cambia "your-text-color" al color de texto deseado */
     /* Otros estilos de botón personalizados aquí */
 }
-.custom-icon-class {
-    color: #A1C2F1 !important; /* Color de icono de exclamación*/
-    border-color: #A1C2F1 !important;
+.custom-icon-class-2 {
+    color: #7a316f6c !important; /* Color de icono de exclamación*/
+    border-color: #7a316f6c !important;
 }
+/**/

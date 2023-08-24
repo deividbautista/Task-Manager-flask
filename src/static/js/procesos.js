@@ -41,10 +41,17 @@ document.addEventListener("DOMContentLoaded", function () {
         text: 'Esta acción eliminará la asignación de forma permanente.',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#900C3F',
-        cancelButtonColor: '#33415c',
         confirmButtonText: 'Sí, eliminar',
-        cancelButtonText: 'Cancelar'
+        cancelButtonText: 'Cancelar',
+        customClass: {
+          // confirmButtonColor: '#900C3F',
+          // cancelButtonColor: '#33415c',
+          // confirmButtonText: 'Sí, eliminar',
+          // cancelButtonText: 'Cancelar'
+          confirmButton: 'custom-button-confirmation-1',
+          cancelButton: 'custom-button-cancel-1',
+          icon: 'custom-icon-class-1'
+        }
       }).then((result) => {
         if (result.isConfirmed) {
           /// Aquí puedes agregar la lógica para eliminar al usuario
@@ -80,9 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
             text: 'La eliminación de la asignación ha sido cancelada.',
             icon: 'info',
             customClass: {
-              confirmButton: 'custom-confirm-button-class',
-              icon: 'custom-icon-class',
-              container: 'custom-container-class'
+              confirmButton: 'custom-button-confirmation-2',
+              icon: 'custom-icon-class-2',
             }
           });
         }

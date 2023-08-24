@@ -40,30 +40,6 @@ def datosUsuarios():
     return dataUser
 
 
-#Rutas de la aplicación
-# @app.route('/')
-# def home():
-#     cursor = db.database.cursor()
-#     query = """
-#     SELECT p.*, GROUP_CONCAT(u.id) AS id_usuario, GROUP_CONCAT(u.fullname) AS nombre_usuario
-#     FROM procesos p
-#     LEFT JOIN asignaciones a ON p.id_proceso = a.id_proceso
-#     LEFT JOIN users u ON a.id = u.id
-#     GROUP BY p.id_proceso;
-#     """
-#     cursor.execute(query)
-#     myresult = cursor.fetchall()
-#     #Convertir los datos a diccionario
-#     insertObject = []
-#     columnNames = [column[0] for column in cursor.description]
-#     for record in myresult:
-#         insertObject.append(dict(zip(columnNames, record)))
-#     cursor.close()   
-#     dataUser = datosUsuarios()
-    
-#     return render_template('index.html', data=insertObject, datosU=dataUser )
-
-
 @app.route("/")
 def home():
     cursor = db.database.cursor()
@@ -165,5 +141,5 @@ def edit(id_proceso):
 
 
 if __name__ == '__main__':   
-    app.run(debug=True, port=4000)
+    app.run(debug=True, port=8000)
 

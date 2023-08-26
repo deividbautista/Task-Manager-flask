@@ -1,5 +1,5 @@
 # Task-Manager-flask
-In this repository the development of a task manager application is observed, making use of tools such as botpstrap 5, and libraries such as MySqlConnector and Flask. / En este repositorio se observa el desarrollo de una aplicación administradora de tareas, haciendo uso de herramientas como botpstrap 5, y bibliotecas como MySqlConnector y Flask.
+In this repository the development of a task manager application is observed, making use of tools such as botpstrap 5, and libraries such as MySqlConnector and Flask. // En este repositorio se observa el desarrollo de una aplicación administradora de tareas, haciendo uso de herramientas como botpstrap 5, y bibliotecas como MySqlConnector y Flask.
 
 ## Requisitos previos
 * Python [python download](https://www.python.org/downloads/release/python-31010/)
